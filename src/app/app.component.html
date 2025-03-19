@@ -2,8 +2,17 @@
 {
     <app-usuario></app-usuario>
 }
-@else  {
-    <app-login (exportLoggedIn)="getLoggedIn($event)"></app-login>
+@else {
+    <div *ngIf="!showRegisterComponent">
+        <app-login 
+            (exportLoggedIn)="getLoggedIn($event)" 
+            (showRegisterEvent)="showRegister()">
+        </app-login>
+    </div>
+    <div *ngIf="showRegisterComponent">
+        <app-register></app-register>
+        <button class="btn btn-secondary mt-3" (click)="showLogin()">Volver al Login</button>
+    </div>
 }
 
-<router-outlet />
+<router-outlet></router-outlet>

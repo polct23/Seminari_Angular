@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>Registro</h1>
+    <form [formGroup]="formularioRegistro" (ngSubmit)="register()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input id="email" type="email" class="form-control" formControlName="email" 
+               [ngClass]="{'is-invalid': formularioRegistro.get('email')?.invalid && formularioRegistro.get('email')?.touched}">
+        <div class="text-danger" *ngIf="formularioRegistro.get('email')?.hasError('required')">El email es obligatorio.</div>
+        <div class="text-danger" *ngIf="formularioRegistro.get('email')?.hasError('email')">El email no es válido.</div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña:</label>
+        <input id="password" type="password" class="form-control" formControlName="password" 
+               [ngClass]="{'is-invalid': formularioRegistro.get('password')?.invalid && formularioRegistro.get('password')?.touched}">
+        <div class="text-danger" *ngIf="formularioRegistro.get('password')?.hasError('required')">La contraseña es obligatoria.</div>
+        <div class="text-danger" *ngIf="formularioRegistro.get('password')?.hasError('minlength')">La contraseña debe tener al menos 8 caracteres.</div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Registrarse</button>
+    </form>
+  </div>
