@@ -1,19 +1,30 @@
-<div class="usuario-container">
-   <div class="centrado-negrita">
-        Datos del usuario {{usuario.name}}:       
-    </div>
-    <img (click) = "mostrardatos()" class="imagen-perfil" alt="photo" [src]="foto" />
-    
-</div>
-<div class="datos-container">
-    @if (mostrardata) {
-        <p> <strong>Nombre: </strong>  {{usuario.name}}</p>
-        <p> <strong>Años: </strong> {{usuario.age}}</p>
-        <p> <strong>Email: </strong> {{usuario.email}}</p>
-    }     
- </div>
- <app-colaboradores 
-    (changeNameEvent)="getName($event)" 
-    [usuario]="usuario"></app-colaboradores>
+<div class="usuario-lista">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Seleccionar</th>
+          <th>Foto</th>
+          <th>Nombre</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>
+            <input type="checkbox" [(ngModel)]="usuario.seleccionado" />
+          </td>
+          <td>
+            <img class="imagen-perfil" alt="photo" [src]="usuario.avatar" />
+          </td>
+          <td>{{ usuario.first_name }} {{ usuario.last_name }}</td>
+          <td>{{ usuario.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="acciones">
+    <button class="btn btn-danger" (click)="confirmarEliminacion()">Eliminar Usuarios Seleccionados</button>
+  </div>
 
  

@@ -3,6 +3,7 @@ export interface User {
     name: string;
     age: number;
     email: string;
+    foto: string;
   }
 export class User implements User {
     constructor(     
